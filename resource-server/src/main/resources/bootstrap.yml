@@ -1,0 +1,36 @@
+server:
+  port: 9091
+  servlet:
+    session:
+      cookie: # 这里不写一个名字会报错,很诡异
+        name: OAUTH2SESSION
+
+spring:
+  application:
+    name: resource-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+security:
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      # 客户端id
+      client-id: client_id
+      # 客户端secret
+      client-secret: secret
+      # 作用域
+      scope: all
+      # 这里是 http:应用名/资源路径,不能用lb:服务名
+      # 请求认证地址
+      user-authorization-uri: http://auth-server/oauth/authorize
+      # 获取token地址
+      access-token-uri: http://auth-server/oauth/token
+
+    resource:
+      # 校验token的地址
+      token-info-uri: http://auth-server/oauth/check_token
+      id: oauth2-resource

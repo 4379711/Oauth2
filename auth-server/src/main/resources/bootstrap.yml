@@ -1,0 +1,30 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: auth-server
+  redis:
+    port: 63790
+    host: 127.0.0.1
+    password: liuyalong
+    database: 2
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+encrypt:
+  key-store:
+    location: classpath:/yalong.jks
+    secret: yalong
+    alias: test
+    password: yalong
+
+auth:
+  ttl: 3600  #token存储到redis的过期时间
+  clientId: yalong
+  clientSecret: yalong
+  cookieDomain: localhost
+  cookieMaxAge: -1
